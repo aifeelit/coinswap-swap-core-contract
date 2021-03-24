@@ -4,12 +4,12 @@ const TestToken1 = artifacts.require("TestToken1.sol");
 const TestToken2 = artifacts.require("TestToken2.sol");
 
 
-module.exports = async function (deployer, network, addresses ) {
+module.exports = async function (deployer, network, addresses) {
   await deployer.deploy(CoinSwapFactory, addresses[0]);
   const factory = await CoinSwapFactory.deployed();
 
   let token1Adress, token2Adress;
-  if (network == 'testnet' || 'bsc') {
+  if (network == 'testnet' || network == 'bsc') {
     token1Adress = '';
     token2Adress = '';
   } else {

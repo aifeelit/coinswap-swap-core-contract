@@ -1,5 +1,5 @@
 {
-  "name": "swap-core",
+  "name": "@coinswap-libs/swap-core",
   "description": "Core contracts for the CoinSwap protocol",
   "version": "0.1.0",
   "homepage": "https://coinswap.space",

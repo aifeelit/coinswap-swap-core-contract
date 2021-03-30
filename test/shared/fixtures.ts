@@ -4,7 +4,7 @@ import { deployContract } from 'ethereum-waffle'
 
 import { expandTo18Decimals } from './utilities'
 
-import ERC20 from '../../build/ERC20.json'
+import BEP20 from '../../build/BEP20.json'
 import CoinSwapFactory from '../../build/CoinSwapFactory.json'
 import CoinSwapPair from '../../build/CoinSwapPair.json'
 
@@ -30,8 +30,8 @@ interface PairFixture extends FactoryFixture {
 export async function pairFixture(provider: Web3Provider, [wallet]: Wallet[]): Promise<PairFixture> {
   const { factory } = await factoryFixture(provider, [wallet])
 
-  const tokenA = await deployContract(wallet, ERC20, [expandTo18Decimals(10000)], overrides)
-  const tokenB = await deployContract(wallet, ERC20, [expandTo18Decimals(10000)], overrides)
+  const tokenA = await deployContract(wallet, BEP20, [expandTo18Decimals(10000)], overrides)
+  const tokenB = await deployContract(wallet, BEP20, [expandTo18Decimals(10000)], overrides)
 
   await factory.createPair(tokenA.address, tokenB.address, overrides)
   const pairAddress = await factory.getPair(tokenA.address, tokenB.address)

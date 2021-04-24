@@ -25,6 +25,13 @@ async function factoryDeploy(deployData) {
   const hash = await factory.INIT_CODE_PAIR_HASH();
   deployData.hash = hash;
   console.log("hash:", hash);
+
+  await router.setFeeTo(routerConfig.feeTo)
+  await new Promise(resolve => setTimeout(resolve, 5000))
+
+  const feeTo = await router.feeTo();
+  console.log('Fee to set to address', feeTo)
+
   deployData.toJsonFile();
   return deployData;
 }

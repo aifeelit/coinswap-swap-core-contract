@@ -19,7 +19,7 @@ async function sh(cmd) {
 }
 
 async function verifyFactory() {
-  let { stdout } = await sh(`npx hardhat verify ${factory} ${deployer} --network testnet`);
+  let { stdout } = await sh(`npx hardhat verify ${factory} ${deployer} --network ${process.env.HARDHAT_NETWORK}`);
   for (let line of stdout.split('\n')) {
     console.log(`${line}`);
   }

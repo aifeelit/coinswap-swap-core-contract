@@ -1,4 +1,4 @@
-const { deployer } = require('../secrets.json')
+const { deployer, feeTo } = require('../secrets.json')
 const { DeployModel } = require('./deploy.model')
 
 async function factoryDeploy(deployData) {
@@ -26,11 +26,11 @@ async function factoryDeploy(deployData) {
   deployData.hash = hash;
   console.log("hash:", hash);
 
-  await router.setFeeTo(routerConfig.feeTo)
+  await factory.setFeeTo(feeTo)
   await new Promise(resolve => setTimeout(resolve, 5000))
 
-  const feeTo = await router.feeTo();
-  console.log('Fee to set to address', feeTo)
+  const feeToAddress = await factory.feeTo();
+  console.log('Fee to set to address', feeToAddress)
 
   deployData.toJsonFile();
   return deployData;
